@@ -1,22 +1,11 @@
-from nose.tools import assert_is_not_none, assert_list_equal, assert_equal, assert_not_equals, assert_is_none
-from unittest.mock import Mock, patch
-from services import get_users, find_users
-import json
+from services import get_users
+import unittest
 
-class TestUsers(object):
-
-    @classmethod
-    def setup_class(cls):
-        cls.mock_get_patcher = patch('services.requests.get')
-        cls.mock_get = cls.mock_get_patcher.start()
-
-    @classmethod
-    def teardown_class(cls):
-        cls.mock_get_patcher.stop()
+class TestGetUsers(unittest.TestCase):
 
     def test_get_list_users_with_response_is_ok(self):
 
-        users = [{
+        user = {
             "id": 1,
             "name": "Leanne Graham",
             "username": "Bret",
@@ -38,22 +27,25 @@ class TestUsers(object):
                 "catchPhrase": "Multi-layered client-server neural-net",
                 "bs": "harness real-time e-markets"
             }
-        }]
-
-        # Configure the mock to return a response with an OK  status code
-        self.mock_get.return_value = Mock(ok=True)
-        self.mock_get.return_value.json.return_value = users
+        }
 
         # Call the service get list users
-        users_response = get_users()
+        response = get_users()
+
+        #Confirm that the API is called successfully
+        self.assertEquals(response.status_code, 200)
+        users_json = response.json()
+
         # If the request is sent successfully, then I expect a response to be returned
-        assert_list_equal(users_response, users)
+        self.assertEquals(len(users_json), 10)
 
-    def test_getting_users_with_response_is_none(self):
-        # Configure the mock to not return a response with an OK status code.
-        self.mock_get.return_value.ok = False
+        #Get last user
+        last_user = users_json.pop()
 
-        # Call the service, which will send a request to the server.
-        users_response = get_users()
-
-        assert_is_none(users_response)
+        # Verification that "name", "username, "email" is not None
+        self.assertIsNotNone(last_user["name"])
+        self.assertIsNotNone(last_user["username"])
+        self.assertIsNotNone(last_user["email"])
+        self.assertIsNotNone(last_user["address"])
+        self.assertIsNotNone(last_user["phone"])
+        self.assertIsNotNone(last_user["company"])
