@@ -5,7 +5,7 @@ class TestUpdateUser(unittest.TestCase):
 
     def test_update_user(self):
 
-        #Preparation data
+        #Preparation data need to update
         data = {
             "name": "test",
             "username": "lazada",

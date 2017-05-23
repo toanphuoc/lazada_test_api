@@ -1,8 +1,9 @@
-from services import get_users
+from services import get_list_of_users, get_user_by_id
 import unittest
 
 class TestGetUsers(unittest.TestCase):
 
+    #Test get list of user
     def test_get_list_users_with_response_is_ok(self):
 
         user = {
@@ -30,10 +31,12 @@ class TestGetUsers(unittest.TestCase):
         }
 
         # Call the service get list users
-        response = get_users()
+        response = get_list_of_users()
 
         #Confirm that the API is called successfully
         self.assertEquals(response.status_code, 200)
+
+        #Parse response to json object
         users_json = response.json()
 
         # If the request is sent successfully, then I expect a response to be returned
@@ -49,3 +52,24 @@ class TestGetUsers(unittest.TestCase):
         self.assertIsNotNone(last_user["address"])
         self.assertIsNotNone(last_user["phone"])
         self.assertIsNotNone(last_user["company"])
+
+    #Test get user by id
+    def test_get_user_id(self):
+        response = get_user_by_id('1')
+
+        # Confirm that the API is called successfully
+        self.assertEquals(response.status_code, 200)
+
+        # Parse response to json object
+        user_json = response.json()
+
+        # Verification that "name", "username, "email" is not None
+        self.assertEqual(user_json["id"], 1)
+        self.assertIsNotNone(user_json["name"])
+        self.assertIsNotNone(user_json["username"])
+        self.assertIsNotNone(user_json["email"])
+        self.assertIsNotNone(user_json["address"])
+        self.assertIsNotNone(user_json["phone"])
+        self.assertIsNotNone(user_json["company"])
+        self.assertIsNotNone(user_json["website"])
+

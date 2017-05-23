@@ -20,6 +20,8 @@ class TestCreateUser(unittest.TestCase):
         #Parse to json
         json_response = response.json()
 
+        print(json_response)
+
         #Confirm that user is created via all information are correct
         self.assertEquals(json_response["id"], 11)
         self.assertEquals(json_response["name"], data["name"])
