@@ -1,7 +1,6 @@
 from services import delete_user
-import unittest
 
-class TestDeleteUser(unittest.TestCase):
+class TestDeleteUser():
 
     def test_delete_user(self):
 
@@ -9,10 +8,10 @@ class TestDeleteUser(unittest.TestCase):
         response = delete_user('1')
 
         #Confirm that the api is called successully
-        self.assertEquals(response.status_code, 200)
+        assert response.status_code == 200
 
         #parse response to json
         json_data = response.json()
 
         #Confirm data is returned
-        self.assertEquals(json_data, {})
+        assert json_data == {}

@@ -1,7 +1,6 @@
 from services import update_user
-import unittest
 
-class TestUpdateUser(unittest.TestCase):
+class TestUpdateUser():
 
     def test_update_user(self):
 
@@ -21,10 +20,10 @@ class TestUpdateUser(unittest.TestCase):
         json_response = response.json()
 
         # Confirm that user is updated which all informations are correct
-        self.assertEquals(json_response["id"], 1)
-        self.assertEquals(json_response["name"], data["name"])
-        self.assertEquals(json_response["username"], data["username"])
-        self.assertEquals(json_response["email"], data["email"])
-        self.assertEquals(json_response["phone"], data["phone"])
-        self.assertEquals(json_response["website"], data["website"])
+        assert json_response["id"] == 1
+        assert json_response["name"] == data["name"]
+        assert json_response["username"] == data["username"]
+        assert json_response["email"] == data["email"]
+        assert json_response["phone"] == data["phone"]
+        assert json_response["website"] == data["website"]
 

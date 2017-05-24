@@ -1,7 +1,6 @@
-import unittest
 from services import create_user
 
-class TestCreateUser(unittest.TestCase):
+class TestCreateUser():
 
     def test_create_user(self):
 
@@ -20,12 +19,10 @@ class TestCreateUser(unittest.TestCase):
         #Parse to json
         json_response = response.json()
 
-        print(json_response)
-
         #Confirm that user is created via all information are correct
-        self.assertEquals(json_response["id"], 11)
-        self.assertEquals(json_response["name"], data["name"])
-        self.assertEquals(json_response["username"], data["username"])
-        self.assertEquals(json_response["email"], data["email"])
-        self.assertEquals(json_response["phone"], data["phone"])
-        self.assertEquals(json_response["website"], data["website"])
+        assert json_response["id"] == 11
+        assert json_response["name"] == data["name"]
+        assert json_response["username"] == data["username"]
+        assert json_response["email"] == data["email"]
+        assert json_response["phone"] ==data["phone"]
+        assert json_response["website"] == data["website"]

@@ -1,7 +1,6 @@
 from services import create_user
-import unittest
 
-class TestCreateUserNegative(unittest.TestCase):
+class TestCreateUserNegative():
 
     # Test create new user which payload is none
     def test_create_user_with_payload_is_none(self):
@@ -11,8 +10,7 @@ class TestCreateUserNegative(unittest.TestCase):
 
         #Call the API create user
         response = create_user(data)
-
-        self.assertIsNone(response)
+        assert response == None
 
     # Test create new user which payload has invalid keys
     def test_create_user_which_payload_has_invalid_keys(self):
@@ -23,7 +21,7 @@ class TestCreateUserNegative(unittest.TestCase):
         # Call the API create user
         response = create_user(data)
 
-        self.assertIsNone(response)
+        assert response == None
 
     # Test create new user which payload has duplicate keys
     def test_create_user_which_payload_has_duplicate_keys(self):
@@ -35,4 +33,4 @@ class TestCreateUserNegative(unittest.TestCase):
         # Call the API create user
         response = create_user(data)
 
-        self.assertIsNone(response)
+        assert response == None

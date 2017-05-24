@@ -22,7 +22,7 @@ def get_user_by_id(user_id):
 	else:
 		None
 
-def find_user_by_id(user_id):
+def get_user_by_id(user_id):
 	GET_USER_URL = urljoin(BASE_URL, 'users/' + user_id)
 	response = requests.get(GET_USER_URL)
 
