@@ -8,27 +8,24 @@ class TestFindUser():
         response = find_users_by_id('1')
 
         # Confirm that the API is called successfully
-        assert response.status_code == 200
-
-        #Confirm that user is found
-        assert response != None
+        assert response.status_code == 200, "The actual status code is " + str(response.status_code)
 
         #Parse to json
         user_json = response.json()
 
         #Confirm that the data result has one item
-        assert len(user_json) == 1
+        assert len(user_json) == 1, "The result of finding user by id shout be have one data. The number of actual data are " + str(len(user_json))
 
         #Get last user
         first_user = user_json[0]
 
         # Confirm that user has some keys 'id', 'name', 'username', 'email', 'address', 'phone', 'website', 'company'
-        assert first_user["id"] == 1
-        assert first_user["name"] == "Leanne Graham"
-        assert first_user["username"] == "Bret"
-        assert first_user["email"] == "Sincere@april.biz"
-        assert first_user["phone"] == "1-770-736-8031 x56442"
-        assert first_user["website"] == "hildegard.org"
+        assert first_user["id"] == 1, "The actual user id is found which is " + str(first_user["id"])
+        assert first_user["name"] != None
+        assert first_user["username"] != None
+        assert first_user["email"] != None
+        assert first_user["phone"] != None
+        assert first_user["website"] != None
         assert first_user["address"] != None
         assert first_user["company"] != None
 
@@ -38,26 +35,20 @@ class TestFindUser():
         response = find_users_by_name('Leanne Graham')
 
         # Confirm that the API is called successfully
-        assert response.status_code == 200
-
-        # Confirm that user is found
-        assert response != None
+        assert response.status_code == 200, "The actual status code is " + str(response.status_code)
 
         # Parse to json object
         user_json = response.json()
-
-        # Confirm that the data result has one item
-        assert len(user_json) == 1
 
         # Get last user
         first_user = user_json[0]
 
         # Confirm values of user such as 'id', 'name', 'username', 'email', 'address', 'phone', 'website', 'company'
-        assert first_user["name"] == "Leanne Graham"
-        assert first_user["username"] == "Bret"
-        assert first_user["email"] == "Sincere@april.biz"
-        assert first_user["phone"] == "1-770-736-8031 x56442"
-        assert first_user["website"] == "hildegard.org"
+        assert first_user["name"] == "Leanne Graham", "The actual name is found which is " + first_user["name"]
+        assert first_user["username"] != None
+        assert first_user["email"] != None
+        assert first_user["phone"] != None
+        assert first_user["website"] != None
         assert first_user["address"] != None
         assert first_user["company"] != None
 
@@ -67,24 +58,21 @@ class TestFindUser():
         response = find_users_by_username("Bret")
 
         # Confirm that the API is called successfully
-        assert response.status_code == 200
-
-        # Confirm that user is found
-        assert response != None
+        assert response.status_code == 200, "The actual status code is " + str(response.status_code)
 
         # Parse to json
         user_json = response.json()
 
         # Confirm that the data result just has one item
-        assert len(user_json) == 1
+        assert len(user_json) == 1, "The result of finding user by id shout be have one data. The number of actual data are " + str(len(user_json))
 
         # Get last user
         first_user = user_json[0]
-        assert first_user["name"] == "Leanne Graham"
-        assert first_user["username"] == "Bret"
-        assert first_user["email"] == "Sincere@april.biz"
-        assert first_user["phone"] == "1-770-736-8031 x56442"
-        assert first_user["website"] == "hildegard.org"
+        assert first_user["name"] != None
+        assert first_user["username"] != None
+        assert first_user["email"] == "Sincere@april.biz", "The actual email is found which is " + first_user["email"]
+        assert first_user["phone"] != None
+        assert first_user["website"] != None
         assert first_user["address"] != None
         assert first_user["company"] != None
 
@@ -94,23 +82,20 @@ class TestFindUser():
         response = find_users_by_email("Sincere@april.biz")
 
         # Confirm that the API is called successfully
-        assert response.status_code == 200
-
-        # Confirm that user is found
-        assert response != None
+        assert response.status_code == 200, "The actual status code is " + str(response.status_code)
 
         # Parse to json
         user_json = response.json()
 
         # Confirm that the data result just has one item
-        assert len(user_json) == 1
+        assert len(user_json) == 1, "The result of finding user by id shout be have one data. The number of actual data are " + str(len(user_json))
 
         # Get last user
         first_user = user_json[0]
-        assert first_user["name"] == "Leanne Graham"
-        assert first_user["username"] == "Bret"
-        assert first_user["email"] == "Sincere@april.biz"
-        assert first_user["phone"] == "1-770-736-8031 x56442"
-        assert first_user["website"] == "hildegard.org"
+        assert first_user["name"]!= None
+        assert first_user["username"] != None
+        assert first_user["email"] == "Sincere@april.biz", "The actual email is found which is " + first_user["email"]
+        assert first_user["phone"] != None
+        assert first_user["website"] != None
         assert first_user["address"] != None
         assert first_user["company"] != None
